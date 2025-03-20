@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BokningsSystemMaui.Models
 {
-    class Collections
+    class Helper
     {
         public static void AddBooking(Session session)
         {

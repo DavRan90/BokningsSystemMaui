@@ -60,7 +60,7 @@ public partial class NotificationsPage : ContentPage
     private async void OnClickedBook(object sender, EventArgs e)
     {
         var session = ((Button)sender).BindingContext as Models.Session;
-        Models.Collections.AddBooking(session);
+        Models.Helper.AddBooking(session);
         await DisplayAlert("Bokning klar", $"Bokning till {session.Name} med ID {session.Id} den {String.Format("{0:d}", session.Date)} kl {session.TimeStart} tillagd", "OK");
         await Navigation.PushAsync(new NotificationsPage());
     }

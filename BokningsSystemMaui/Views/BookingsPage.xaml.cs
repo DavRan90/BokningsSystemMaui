@@ -34,7 +34,7 @@ public partial class BookingsPage : ContentPage
         bool answer = await DisplayAlert("Bekräfta avbokning", $"Bekräfta avbokning till {booking.SessionName} den {String.Format("{0:d}", booking.Date)} kl {booking.Start} ", "Ja", "Nej");
         if (answer == true)
         {
-            Collections.RemoveBooking(booking);
+            Helper.RemoveBooking(booking);
             await DisplayAlert("Bokning borttagen", $"Bokning till {booking.SessionName} med ID {booking.Id} den {String.Format("{0:d}", booking.Date)} kl {booking.Start} borttagen", "OK");
             await Navigation.PushAsync(new BookingsPage());
         }
