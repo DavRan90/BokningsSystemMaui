@@ -55,6 +55,13 @@
                     Clicked="OnAdminClicked"
                     />
                 <Button
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    x:Name="Notification"
+                    Text="Notiser"
+                    Clicked="OnNotificationClicked"
+                    />
+                <Button
                     CornerRadius="5"
                     BackgroundColor="DodgerBlue"
                     Grid.Row="0"
@@ -68,10 +75,9 @@
             <Label/>
             <Image
                 
-                Source="vattengymnastik1.jpg"
-                WidthRequest="600"
-                Aspect="AspectFill"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+                Source="hydro2.jpg"
+                WidthRequest="400"
+                Aspect="AspectFill"/>
 
             <Label
                 Text="Välkommen till bokningssystemet"

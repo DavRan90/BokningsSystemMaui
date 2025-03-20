@@ -63,6 +63,11 @@ namespace BokningsSystemMaui
         {
 
         }
+
+        private async void OnNotificationClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NotificationsPage());
+        }
     }
 
 }

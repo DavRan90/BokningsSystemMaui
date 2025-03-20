@@ -15,8 +15,8 @@ namespace BokningsSystemMaui.Models
         public TimeOnly TimeStart { get; set; }
         public TimeOnly TimeEnd { get; set; }
         public int SessionType { get; set; }
-
         public int SlotsBooked { get; set; }
+        public int MaxSlots { get; set; }
         //public DateTime RecurringUntilDate { get; set; }
         //// Should be from other class
         //public string SessionName { get; set; }
@@ -35,6 +35,7 @@ namespace BokningsSystemMaui.Models
             currentSession.TimeEnd = session.TimeEnd;
             currentSession.SessionType = session.SessionType;
             currentSession.SlotsBooked = session.SlotsBooked;
+            currentSession.MaxSlots = session.MaxSlots;
             //currentSession.RecurringUntilDate = session.RecurringUntilDate;
             //currentSession.SessionName = session.SessionName;
             //currentSession.SlotsBooked = session.SlotsBooked;

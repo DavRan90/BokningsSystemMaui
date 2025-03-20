@@ -100,6 +100,50 @@ namespace BokningsSystemMaui
                 return result.ToList();
             }
         }
+        public static List<SessionNotifications> GetListOfSessionsWithNotifications()
+        {
+            using (var db = new BookingSystemContext())
+            {
+                var result = from note in db.Notifications
+                             join session in db.Sessions on note.SessionId equals session.Id
+                             join user in db.Users on note.UserId equals user.Id
+                             where note.Notified == true
+                             select new SessionNotifications
+                             {
+                                 Name = session.Name,
+                                 Date = session.Date,
+                                 TimeStart = session.TimeStart,
+                                 SlotsBooked = session.SlotsBooked,
+                                 MaxSlots = session.MaxSlots,
+                                 UserId = note.UserId
+                             };
+
+                return result.ToList();
+            }
+        }
+        public static List<Session> GetListOfSessionsWithNotifications(int userId)
+        {
+            using (var db = new BookingSystemContext())
+            {
+                var result = from note in db.Notifications
+                             join session in db.Sessions on note.SessionId equals session.Id
+                             join user in db.Users on note.UserId equals user.Id
+                             where note.Notified == true && note.UserId == userId
+                             select new Session
+                             {
+                                 Id = session.Id,
+                                 Name = session.Name,
+                                 Date = session.Date,
+                                 TimeStart = session.TimeStart,
+                                 TimeEnd = session.TimeEnd,
+                                 SessionType = session.SessionType,
+                                 SlotsBooked = session.SlotsBooked,
+                                 MaxSlots = session.MaxSlots,
+                             };
+
+                return result.ToList();
+            }
+        }
         public static void RemoveBooking(int bookingId)
         {
             using (var db = new BookingSystemContext())
@@ -113,6 +157,42 @@ namespace BokningsSystemMaui
                     bookingList.Remove(removeBooking);
                 }
                 db.SaveChanges();
+            }
+        }
+        public static void UpdateNotifications(int sessionId, bool notify)
+        {
+            using (var db = new BookingSystemContext())
+            {
+                var notifications = db.Notifications;
+                var updateNotifications = (from n in notifications
+                                            where n.SessionId == sessionId
+                                            select n).SingleOrDefault();
+                if (updateNotifications != null)
+                {
+                    updateNotifications.Notified = notify;
+                }
+                db.SaveChanges();
+            }
+        }
+        public static void AddNotification(Models.Notification notification)
+        {
+            using (var db = new Models.BookingSystemContext())
+            {
+                db.Add(notification);
+                db.SaveChanges();
+            }
+        }
+        public static List<Models.Notification> GetCurrentUserNotifications(int userId)
+        {
+            using (var db = new Models.BookingSystemContext())
+            {
+                var result = from n in db.Notifications
+                             where n.UserId == userId
+                             select n;
+
+                var result2 = db.Notifications.Where(note => note.UserId == userId && note.Notified == true);
+
+                return result2.ToList();
             }
         }
         public static List<Models.Booking> GetActiveBookings(int userId)

@@ -21,6 +21,10 @@ namespace BokningsSystemMaui.Models
             };
             Db.AddBooking(newBooking);
             session.SlotsBooked++;
+            if(session.SlotsBooked == session.MaxSlots)
+            {
+                Db.UpdateNotifications(session.Id, false);
+            }
             Db.UpdateSession(session);
         }
         public static void RemoveBooking(BookingWithAdditionalInfo booking)
@@ -31,6 +35,10 @@ namespace BokningsSystemMaui.Models
                 if (session.Id == booking.SessionId)
                 {
                     Session.SetCurrentSession(session);
+                    if (session.SlotsBooked == session.MaxSlots)
+                    {
+                        Db.UpdateNotifications(session.Id, true);
+                    }
                     session.SlotsBooked--;
                     Db.UpdateSession(session);
                 }

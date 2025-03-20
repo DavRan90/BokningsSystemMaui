@@ -30,7 +30,17 @@ public partial class BookPage : ContentPage
         }
         else
         {
-            await DisplayAlert("Alert", "Passet är fullbokat", "OK");
+            bool answer = await DisplayAlert("Alert", "Passet är fullbokat, vill du bli notifierad om en plats blir ledig?", "Ja", "Nej");
+            if (answer == true)
+            {
+                Notification notification = new Notification()
+                {
+                    Notified = false,
+                    SessionId = session.Id,
+                    UserId = User.GetUser().Id
+                };
+                Db.AddNotification(notification);
+            }
         }
     }
 }

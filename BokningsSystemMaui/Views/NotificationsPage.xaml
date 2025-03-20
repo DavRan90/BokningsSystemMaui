@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BokningsSystemMaui.Views.NotificationsPage"
+             Title="Notiser">
+    <ScrollView>
+        <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
+
+            <Grid
+            RowDefinitions="60, *"
+            ColumnDefinitions="150, 150, 150, 150, 150, *"
+            HorizontalOptions="Fill"
+            Padding="10"
+            RowSpacing="10"
+            ColumnSpacing="10"
+            >
+                <Button
+                Grid.Row="0"
+                Grid.Column="0"
+                x:Name="StartPage"
+                Text="Startsida"
+                Clicked="OnStartPageClicked"
+                />
+                <Button
+                
+                Grid.Row="0"
+                Grid.Column="1"
+                x:Name="MyPages"
+                Text="Mina sidor"
+                Clicked="OnMyPagesClicked"
+                />
+                <Button
+                Grid.Row="0"
+                Grid.Column="2"
+                x:Name="Bookings"
+                Text="Bokningar"
+                Clicked="OnBookingsClicked"
+                />
+                <Button
+                Grid.Row="0"
+                Grid.Column="3"
+                x:Name="Book"
+                Text="Boka pass"
+                Clicked="OnBookClicked"
+                />
+                <Button
+                Grid.Row="0"
+                Grid.Column="4"
+                x:Name="Admin"
+                Text="Admin"
+                Clicked="OnAdminClicked"
+                />
+                <Button
+                    BackgroundColor="Aquamarine"
+                Grid.Row="0"
+                Grid.Column="4"
+                x:Name="Notification"
+                Text="Notiser"
+                Clicked="OnNotificationClicked"
+                />
+                <Button
+                CornerRadius="5"
+                BackgroundColor="DodgerBlue"
+                Grid.Row="0"
+                Grid.Column="5"
+                HorizontalOptions="End"
+                x:Name="Login"
+                Text="Logga in"
+                Clicked="OnLoginClicked"
+                />
+            </Grid>
+            <Label/>
+            <Label
+    Padding="25"
+Text="Dina notiser"
+    Style="{StaticResource SubHeadline}"
+VerticalOptions="Center" 
+HorizontalOptions="Start"/>
+            <ListView
+    ItemsSource="{Binding Sessions}" ItemSelected="OnListViewItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid
+                Padding="10"
+                RowDefinitions="Auto, 25, 25, 25"
+                ColumnDefinitions="200, 250, *"
+                ColumnSpacing="20">
+                                <Label
+                    Grid.RowSpan="3"
+                    Text="{Binding Name}"
+                    FontSize="22"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    HeightRequest="100">
+                                </Label>
+                                <Label
+                    Grid.Column="1"
+                    Text="{Binding Id}"
+                    FontSize="22">
+                                </Label>
+                                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    x:Name="BookedWhen"
+                    Text="{Binding SlotsBooked}">
+                                </Label>
+                                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding Date, StringFormat='{0:d}'}">
+                                </Label>
+                                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="{Binding TimeStart, StringFormat='{0:HH:mm}'}">
+                                </Label>
+                                <Button
+                    Grid.RowSpan="3"
+                    Grid.Column="2"
+                    Text="Boka plats"
+                    Clicked="OnClickedBook"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End">
+
+                                </Button>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
