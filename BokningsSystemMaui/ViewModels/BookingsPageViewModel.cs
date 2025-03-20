@@ -10,6 +10,7 @@ namespace BokningsSystemMaui.ViewModels
 {
     public class BookingsPageViewModel
     {
+        public ObservableCollection<Models.BookingWithAdditionalInfo> BookingsWithExtra { get; set; }
         private ObservableCollection<Models.Booking> _booking;
         public ObservableCollection<Models.Booking> Bookings
             
@@ -22,6 +23,9 @@ namespace BokningsSystemMaui.ViewModels
         }
         public BookingsPageViewModel()
         {
+            List<Models.BookingWithAdditionalInfo> extraList = Db.GetListOfBookingsWithExtraInfo(Models.User.GetUser().Id);
+            BookingsWithExtra = new ObservableCollection<Models.BookingWithAdditionalInfo>(extraList);
+
             List<Models.Booking> bookings = Db.GetActiveBookings(Models.User.GetUser().Id);
             Bookings = new ObservableCollection<Models.Booking>(bookings);
         }

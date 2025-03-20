@@ -50,32 +50,7 @@ namespace BokningsSystemMaui
                 db.SaveChanges();
             }
         }
-        public static List<BookingWithAdditionalInfo> GetSpecificSession(int bookingId)
-        {
-            using (var db = new BookingSystemContext())
-            {
-                var result = from booking in db.Bookings
-                             join session in db.Sessions on booking.SessionId equals session.Id
-                             join user in db.Users on booking.UserId equals user.Id
-                             where booking.Id == bookingId
-                             select new BookingWithAdditionalInfo
-                             {
-                                 Id = booking.Id,
-                                 Name = user.Name,
-                                 SessionName = session.Name,
-                                 Date = session.Date,
-                                 Start = session.TimeStart,
-                                 End = session.TimeEnd,
-                                 Booked = booking.Booked,
-                                 BookedWhen = booking.BookedWhen,
-                                 Unbooked = booking.UnbookedWhen,
-                                 SessionId = session.Id
-                             };
-                
-                return result.ToList();
-            }
-        }
-        public static List<BookingWithAdditionalInfo> GetListOfBookingsWithExtra(int userId)
+        public static List<BookingWithAdditionalInfo> GetListOfBookingsWithExtraInfo(int userId)
         {
             using (var db = new BookingSystemContext())
             {
@@ -96,32 +71,9 @@ namespace BokningsSystemMaui
                                  Unbooked = booking.UnbookedWhen,
                                  SessionId = session.Id
                              };
-
-                //return result.ToList();
                 return result.ToList();
             }
         }
-        //public static List<SessionNotifications> GetListOfSessionsWithNotifications()
-        //{
-        //    using (var db = new BookingSystemContext())
-        //    {
-        //        var result = from note in db.Notifications
-        //                     join session in db.Sessions on note.SessionId equals session.Id
-        //                     join user in db.Users on note.UserId equals user.Id
-        //                     where note.Notified == true
-        //                     select new SessionNotifications
-        //                     {
-        //                         Name = session.Name,
-        //                         Date = session.Date,
-        //                         TimeStart = session.TimeStart,
-        //                         SlotsBooked = session.SlotsBooked,
-        //                         MaxSlots = session.MaxSlots,
-        //                         UserId = note.UserId
-        //                     };
-
-        //        return result.ToList();
-        //    }
-        //}
         public static List<Session> GetListOfSessionsWithNotifications(int userId)
         {
             using (var db = new BookingSystemContext())
@@ -141,33 +93,7 @@ namespace BokningsSystemMaui
                                  SlotsBooked = session.SlotsBooked,
                                  MaxSlots = session.MaxSlots,
                              };
-
-                //return result.ToList();
                 return result.ToList();
-            }
-        }
-        public static IEnumerable<Session> GetListIEnumberable(int userId)
-        {
-            using (var db = new BookingSystemContext())
-            {
-                var result = from note in db.Notifications
-                             join session in db.Sessions on note.SessionId equals session.Id
-                             join user in db.Users on note.UserId equals user.Id
-                             where note.Notified == true && note.UserId == userId
-                             select new Session
-                             {
-                                 Id = session.Id,
-                                 Name = session.Name,
-                                 Date = session.Date,
-                                 TimeStart = session.TimeStart,
-                                 TimeEnd = session.TimeEnd,
-                                 SessionType = session.SessionType,
-                                 SlotsBooked = session.SlotsBooked,
-                                 MaxSlots = session.MaxSlots,
-                             };
-
-                //return result.ToList();
-                return result;
             }
         }
         public static void RemoveBooking(int bookingId)
