@@ -24,7 +24,7 @@ namespace BokningsSystemMaui.ViewModels
         }
         public CancellationPageViewModel()
         {
-            var bookingList = Db.GetBookings(Models.User.GetUser().Id);
+            var bookingList = Db.GetActiveBookings(Models.User.GetUser().Id);
             Bookings = new ObservableCollection<Models.Booking>(bookingList);
             Booking = Models.Booking.GetCurrentBooking();
         }

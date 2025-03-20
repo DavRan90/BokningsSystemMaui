@@ -44,25 +44,16 @@ public partial class BookingsPage : ContentPage
     private async void OnClickedUnBook(object sender, EventArgs e)
     {
         var booking = ((Button)sender).BindingContext as Models.BookingWithAdditionalInfo;
-        //var sessions = Db.GetAllSessions();
-        //Models.Session session = new Models.Session();
-        //foreach (var sess in sessions)
-        //{
-        //    if sess.Id = booking.
-        //}
 
         bool answer = await DisplayAlert("Bekräfta avbokning", $"Bekräfta avbokning till {booking.SessionName} den {String.Format("{0:d}", booking.Date)} kl {booking.Start} ", "Ja", "Nej");
         if (answer == true)
         {
-            Db.CancelBooking(booking.Id);
+            Collections.RemoveBooking(booking);
+            // Testar
+            //Db.CancelBooking(booking.Id);
             await DisplayAlert("Bokning borttagen", $"Bokning till {booking.SessionName} med ID {booking.Id} den {String.Format("{0:d}", booking.Date)} kl {booking.Start} borttagen", "OK");
-            //await Navigation.PushAsync(new TestPage(session));
             await Navigation.PushAsync(new BookingsPage());
         }
-
-        
-
-        //await Navigation.PushAsync(new Views.CancellationPage(booking));
     }
 
     private async void OnStartPageClicked(object sender, EventArgs e)
@@ -87,7 +78,6 @@ public partial class BookingsPage : ContentPage
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
-        //await Navigation.PushAsync(new LoginPage(new Models.User()));
         await Navigation.PushAsync(new LoginPage());
     }
 

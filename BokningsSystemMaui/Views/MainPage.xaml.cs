@@ -5,17 +5,14 @@ namespace BokningsSystemMaui
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
         static User currentUser = User.GetUser();
         
         public MainPage()
         {
-            //Task<Weather> weather = WeatherDataManager.GetWeather("v1/weather?lat=59.04410074073589&lon=17.315587071105572");
             InitializeComponent();
             Admin.IsVisible = false;
             GetWeather();
 
-            //Weather.Text = await weather.Result.temp.ToString();
             //User.UpdateUser(new User() { Id = 1, Username = "David", Password = "1234" });
             if (currentUser.Username != null)
             {
@@ -54,7 +51,6 @@ namespace BokningsSystemMaui
 
         private async void OnLoginClicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new LoginPage(new Models.User()));
             await Navigation.PushAsync(new LoginPage());
         }
 
@@ -66,12 +62,6 @@ namespace BokningsSystemMaui
         private void OnAdminClicked(object sender, EventArgs e)
         {
 
-        }
-
-        private async void OnClickedLoadWeather(object sender, EventArgs e)
-        {
-            Task<Models.Weather> weatherToday = WeatherDataManager.GetWeather("v1/weather?lat=59.04410074073589&lon=17.315587071105572");
-            WeatherNow.Text = ($"Temperatur i Gnesta nu: {(await weatherToday).temp}°C");
         }
     }
 

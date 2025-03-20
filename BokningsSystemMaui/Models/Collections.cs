@@ -23,13 +23,19 @@ namespace BokningsSystemMaui.Models
             session.SlotsBooked++;
             Db.UpdateSession(session);
         }
-        //public static void SetBookings(ObservableCollection<Booking> bookings)
-        //{
-        //    currentBookings = new ObservableCollection<Booking>();
-        //}
-        public static void RemoveBooking(int bookingId)
+        public static void RemoveBooking(BookingWithAdditionalInfo booking)
         {
-            currentBookings.RemoveAt(bookingId);
+            var sessions = Db.GetAllSessions();
+            foreach (var session in sessions)
+            {
+                if (session.Id == booking.SessionId)
+                {
+                    Session.SetCurrentSession(session);
+                    session.SlotsBooked--;
+                    Db.UpdateSession(session);
+                }
+            }
+            Db.CancelBooking(booking.Id);
         }
         public static ObservableCollection<Booking> GetBookings()
         {

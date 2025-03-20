@@ -68,7 +68,8 @@ namespace BokningsSystemMaui
                                  End = session.TimeEnd,
                                  Booked = booking.Booked,
                                  BookedWhen = booking.BookedWhen,
-                                 Unbooked = booking.UnbookedWhen
+                                 Unbooked = booking.UnbookedWhen,
+                                 SessionId = session.Id
                              };
                 
                 return result.ToList();
@@ -92,7 +93,8 @@ namespace BokningsSystemMaui
                                  End = session.TimeEnd,
                                  Booked = booking.Booked,
                                  BookedWhen = booking.BookedWhen,
-                                 Unbooked = booking.UnbookedWhen
+                                 Unbooked = booking.UnbookedWhen,
+                                 SessionId = session.Id
                              };
 
                 return result.ToList();
@@ -113,7 +115,7 @@ namespace BokningsSystemMaui
                 db.SaveChanges();
             }
         }
-        public static List<Models.Booking> GetBookings(int userId)
+        public static List<Models.Booking> GetActiveBookings(int userId)
         {
             using(var db = new Models.BookingSystemContext())
             {

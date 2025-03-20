@@ -8,7 +8,7 @@
         Events="{Binding Events}" EventsScrollViewVisible="True" EventIndicatorType="Background" EventIndicatorColor="LightGreen"
         FirstDayOfWeek="Monday"
         ShowYearPicker="False"
-        BackgroundColor="LightGray"
+        BackgroundColor="DarkGrey"
         EventIndicatorSelectedColor="Green"
         SelectedDayBackgroundColor="Green">
         <cal:Calendar.EventTemplate>
@@ -25,9 +25,9 @@
                         RowSpacing="10"
                         ColumnSpacing="10">
                         <Label Grid.Row="0" Grid.Column="0" Text="Start:" TextColor="Black"/>
-                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding TimeStart}" TextColor="Black"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding TimeStart, StringFormat='{0:HH:mm}'}" TextColor="Black"/>
                         <Label Grid.Row="1" Grid.Column="0" Text="Slut:" TextColor="Black"/>
-                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding TimeEnd}" TextColor="Black"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding TimeEnd, StringFormat='{0:HH:mm}'}" TextColor="Black"/>
                         <Label Grid.Row="2" Grid.Column="0" Text="Bokade:" TextColor="Black"/>
                         <Label Grid.Row="2" Grid.Column="1" Text="{Binding SlotsBooked}" TextColor="Black" x:Name="Slots"/>
                         

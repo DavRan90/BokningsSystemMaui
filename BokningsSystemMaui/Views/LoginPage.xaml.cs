@@ -8,7 +8,6 @@ public partial class LoginPage : ContentPage
 {
     static Models.User currentUser = Models.User.GetUser();
     public Models.User User{ get; set; }
-    public Models.TestUser TestUser { get; set; }
     //public List<Models.User> Users { get; set; }
     public LoginPage()
     {
@@ -108,7 +107,6 @@ public partial class LoginPage : ContentPage
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
-        //await Navigation.PushAsync(new LoginPage(new Models.User()));
         await Navigation.PushAsync(new LoginPage());
     }
 

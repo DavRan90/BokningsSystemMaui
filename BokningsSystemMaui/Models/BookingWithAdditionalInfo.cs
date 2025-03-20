@@ -17,5 +17,6 @@ namespace BokningsSystemMaui.Models
         public bool? Booked { get; set; }
         public DateTime? BookedWhen { get; set; }
         public DateTime? Unbooked { get; set; }
+        public int SessionId { get; set; }
     }
 }

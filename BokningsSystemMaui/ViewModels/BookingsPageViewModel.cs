@@ -28,7 +28,7 @@ namespace BokningsSystemMaui.ViewModels
             BookingsWithExtra = new ObservableCollection<Models.BookingWithAdditionalInfo>(extraList);
 
             //Bookings = Models.Collections.GetBookings();
-            List<Models.Booking> bookings = Db.GetBookings(Models.User.GetUser().Id);
+            List<Models.Booking> bookings = Db.GetActiveBookings(Models.User.GetUser().Id);
             
             //List<Models.Booking> bookings = Db.GetAllBookings();
             Bookings = new ObservableCollection<Models.Booking>(bookings);

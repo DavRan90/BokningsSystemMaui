@@ -19,10 +19,8 @@ namespace BokningsSystemMaui.ViewModels
 
         public static List<Models.Session> Method(ObservableCollection<Session> sessions, DateTime date)
         {
-            
             List<Session> sessionsOnDate = new List<Session>();
-            List<EventModel> eventModels = new List<EventModel>();
-
+            
             foreach (var session in sessions)
             {
                 if (session.Date == date)
