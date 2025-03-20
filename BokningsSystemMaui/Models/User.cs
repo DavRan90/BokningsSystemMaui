@@ -9,12 +9,6 @@ namespace BokningsSystemMaui.Models
     public class User
     {
         private static readonly User currentUser = new User();
-        private List<User> _users = new List<User>();
-        public List<User> Users { get; set; }
-        //{
-        //    get { return _users; } 
-        //    set { _users = value; } 
-        //}
         private User()
         {
             

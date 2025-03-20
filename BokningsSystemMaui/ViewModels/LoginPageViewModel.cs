@@ -10,7 +10,6 @@ namespace BokningsSystemMaui.ViewModels
 {
     class LoginPageViewModel
     {
-        public Models.User User { get; set; }
         public ObservableCollection<Models.User> Users { get; set; }
 
         

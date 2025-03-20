@@ -10,35 +10,21 @@ public partial class BookingsPage : ContentPage
 	{
 		InitializeComponent();
         Admin.IsVisible = false;
-        //BindingContext = new ViewModels.BookingsPageViewModel();
         BindingContext = new ViewModels.BookingsPageViewModel();
 
         if (currentUser.Username != null)
         {
             Login.Text = currentUser.Username;
-            //Bookings.IsVisible = true;
-            //Book.IsVisible = true;
-            //MyPages.IsVisible = true;
         }
         else
         {
             Login.Text = "Logga in";
-            //Bookings.IsVisible = false;
-            //Book.IsVisible = false;
-            //MyPages.IsVisible = false;
         }
 
     }
 
     private async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        //var booking = ((ListView)sender).SelectedItem as Models.Booking;
-        //if (booking != null)
-        //{
-        //    var page = new Views.CancellationPage();
-        //    page.BindingContext = booking;
-        //    await Navigation.PushAsync(page);
-        //}
     }
 
     private async void OnClickedUnBook(object sender, EventArgs e)
@@ -49,8 +35,6 @@ public partial class BookingsPage : ContentPage
         if (answer == true)
         {
             Collections.RemoveBooking(booking);
-            // Testar
-            //Db.CancelBooking(booking.Id);
             await DisplayAlert("Bokning borttagen", $"Bokning till {booking.SessionName} med ID {booking.Id} den {String.Format("{0:d}", booking.Date)} kl {booking.Start} borttagen", "OK");
             await Navigation.PushAsync(new BookingsPage());
         }
@@ -84,5 +68,10 @@ public partial class BookingsPage : ContentPage
     private void OnAdminClicked(object sender, EventArgs e)
     {
 
+    }
+
+    private async void OnNotificationClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new NotificationsPage());
     }
 }

@@ -15,10 +15,7 @@ namespace BokningsSystemMaui.Models
         public DateTime? UnbookedWhen { get; set; }
         public int? SessionId { get; set; }
         public int? UserId { get; set; }
-        // Egentligen props från annan klass
-        //public DateTime? WhenSession { get; set; }
-        //public string? SessionName { get; set; }
-        //public virtual Booking? Booking { get; set; }
+
         public static Booking GetCurrentBooking()
         {
             return currentBooking;
@@ -31,8 +28,6 @@ namespace BokningsSystemMaui.Models
             currentBooking.UnbookedWhen = booking.UnbookedWhen;
             currentBooking.SessionId = booking.SessionId;
             currentBooking.UserId = booking.UserId;
-            //currentBooking.WhenSession = booking.WhenSession;
-            //currentBooking.SessionName = booking.SessionName;
         }
     }
 }

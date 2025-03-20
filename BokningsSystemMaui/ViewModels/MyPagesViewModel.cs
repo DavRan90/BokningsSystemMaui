@@ -8,7 +8,6 @@ namespace BokningsSystemMaui.ViewModels
 {
     class MyPagesViewModel
     {
-        public List<Models.User> Users { get; set; }
         public Models.User User { get; set; }
         public MyPagesViewModel()
         {

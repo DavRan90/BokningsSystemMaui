@@ -51,6 +51,13 @@ ColumnSpacing="10"
     Clicked="OnAdminClicked"
     />
                 <Button
+Grid.Row="0"
+Grid.Column="4"
+x:Name="Notification"
+Text="Notiser"
+Clicked="OnNotificationClicked"
+/>
+                <Button
     CornerRadius="5"
     BackgroundColor="DodgerBlue"
     Grid.Row="0"

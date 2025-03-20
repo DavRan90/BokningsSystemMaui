@@ -62,5 +62,13 @@ public partial class NotificationsPage : ContentPage
         var session = ((Button)sender).BindingContext as Models.Session;
         Models.Collections.AddBooking(session);
         await DisplayAlert("Bokning klar", $"Bokning till {session.Name} med ID {session.Id} den {String.Format("{0:d}", session.Date)} kl {session.TimeStart} tillagd", "OK");
+        await Navigation.PushAsync(new NotificationsPage());
+    }
+
+    private async void OnClickedNotInterested(object sender, EventArgs e)
+    {
+        var session = ((Button)sender).BindingContext as Models.Session;
+        Db.DeleteNotifications(session.Id, Models.User.GetUser().Id);
+        await Navigation.PushAsync(new NotificationsPage());
     }
 }

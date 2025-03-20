@@ -13,20 +13,13 @@ namespace BokningsSystemMaui
             Admin.IsVisible = false;
             GetWeather();
 
-            //User.UpdateUser(new User() { Id = 1, Username = "David", Password = "1234" });
             if (currentUser.Username != null)
             {
                 Login.Text = currentUser.Username;
-                //Bookings.IsVisible = true;
-                //Book.IsVisible = true;
-                //MyPages.IsVisible = true;
             }
             else
             {
                 Login.Text = "Logga in";
-                //Bookings.IsVisible = false;
-                //Book.IsVisible = false;
-                //MyPages.IsVisible = false;
             }
         }
         public async void GetWeather()

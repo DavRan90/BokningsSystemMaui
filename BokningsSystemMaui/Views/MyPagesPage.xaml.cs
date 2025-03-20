@@ -9,20 +9,13 @@ public partial class MyPagesPage : ContentPage
         InitializeComponent();
         BindingContext = new ViewModels.MyPagesViewModel();
         Admin.IsVisible = false;
-        //User.UpdateUser(new User() { Id = 1, Username = "David", Password = "1234" });
         if (currentUser.Username != null)
         {
             Login.Text = currentUser.Username;
-            //Bookings.IsVisible = true;
-            //Book.IsVisible = true;
-            //MyPages.IsVisible = true;
         }
         else
         {
             Login.Text = "Logga in";
-            //Bookings.IsVisible = false;
-            //Book.IsVisible = false;
-            //MyPages.IsVisible = false;
         }
     }
 
@@ -62,12 +55,16 @@ public partial class MyPagesPage : ContentPage
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
-        //await Navigation.PushAsync(new LoginPage(new Models.User()));
         await Navigation.PushAsync(new LoginPage());
     }
 
     private void OnAdminClicked(object sender, EventArgs e)
     {
 
+    }
+
+    private async void OnNotificationClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new NotificationsPage());
     }
 }

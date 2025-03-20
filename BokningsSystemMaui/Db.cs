@@ -97,30 +97,31 @@ namespace BokningsSystemMaui
                                  SessionId = session.Id
                              };
 
+                //return result.ToList();
                 return result.ToList();
             }
         }
-        public static List<SessionNotifications> GetListOfSessionsWithNotifications()
-        {
-            using (var db = new BookingSystemContext())
-            {
-                var result = from note in db.Notifications
-                             join session in db.Sessions on note.SessionId equals session.Id
-                             join user in db.Users on note.UserId equals user.Id
-                             where note.Notified == true
-                             select new SessionNotifications
-                             {
-                                 Name = session.Name,
-                                 Date = session.Date,
-                                 TimeStart = session.TimeStart,
-                                 SlotsBooked = session.SlotsBooked,
-                                 MaxSlots = session.MaxSlots,
-                                 UserId = note.UserId
-                             };
+        //public static List<SessionNotifications> GetListOfSessionsWithNotifications()
+        //{
+        //    using (var db = new BookingSystemContext())
+        //    {
+        //        var result = from note in db.Notifications
+        //                     join session in db.Sessions on note.SessionId equals session.Id
+        //                     join user in db.Users on note.UserId equals user.Id
+        //                     where note.Notified == true
+        //                     select new SessionNotifications
+        //                     {
+        //                         Name = session.Name,
+        //                         Date = session.Date,
+        //                         TimeStart = session.TimeStart,
+        //                         SlotsBooked = session.SlotsBooked,
+        //                         MaxSlots = session.MaxSlots,
+        //                         UserId = note.UserId
+        //                     };
 
-                return result.ToList();
-            }
-        }
+        //        return result.ToList();
+        //    }
+        //}
         public static List<Session> GetListOfSessionsWithNotifications(int userId)
         {
             using (var db = new BookingSystemContext())
@@ -141,7 +142,32 @@ namespace BokningsSystemMaui
                                  MaxSlots = session.MaxSlots,
                              };
 
+                //return result.ToList();
                 return result.ToList();
+            }
+        }
+        public static IEnumerable<Session> GetListIEnumberable(int userId)
+        {
+            using (var db = new BookingSystemContext())
+            {
+                var result = from note in db.Notifications
+                             join session in db.Sessions on note.SessionId equals session.Id
+                             join user in db.Users on note.UserId equals user.Id
+                             where note.Notified == true && note.UserId == userId
+                             select new Session
+                             {
+                                 Id = session.Id,
+                                 Name = session.Name,
+                                 Date = session.Date,
+                                 TimeStart = session.TimeStart,
+                                 TimeEnd = session.TimeEnd,
+                                 SessionType = session.SessionType,
+                                 SlotsBooked = session.SlotsBooked,
+                                 MaxSlots = session.MaxSlots,
+                             };
+
+                //return result.ToList();
+                return result;
             }
         }
         public static void RemoveBooking(int bookingId)
@@ -159,17 +185,47 @@ namespace BokningsSystemMaui
                 db.SaveChanges();
             }
         }
-        public static void UpdateNotifications(int sessionId, bool notify)
+        public static void DeleteNotifications(int sessionId, int userId)
+        {
+            using (var db = new BookingSystemContext())
+            {
+                var notifications = db.Notifications;
+                var removeNote = (from n in notifications
+                                     where n.SessionId == sessionId && n.UserId == userId
+                                     select n).SingleOrDefault();
+                if (removeNote != null)
+                {
+                    notifications.Remove(removeNote);
+                }
+                db.SaveChanges();
+            }
+        }
+        public static void UpdateNotification(int sessionId, bool notify)
         {
             using (var db = new BookingSystemContext())
             {
                 var notifications = db.Notifications;
                 var updateNotifications = (from n in notifications
-                                            where n.SessionId == sessionId
-                                            select n).SingleOrDefault();
+                                           where n.SessionId == sessionId
+                                           select n).SingleOrDefault();
                 if (updateNotifications != null)
                 {
                     updateNotifications.Notified = notify;
+                }
+
+                db.SaveChanges();
+            }
+        }
+        public static void UpdateNotifications(int sessionId, bool notified)
+        {
+            using (var db = new BookingSystemContext())
+            {
+                var notifications = db.Notifications;
+                var result2 = db.Notifications.Where(note => note.SessionId == sessionId);
+                foreach (var res in result2)
+                {
+                    res.Notified = notified;
+                    db.Update(res);
                 }
                 db.SaveChanges();
             }

@@ -118,13 +118,22 @@ HorizontalOptions="Start"/>
                     Text="{Binding TimeStart, StringFormat='{0:HH:mm}'}">
                                 </Label>
                                 <Button
-                    Grid.RowSpan="3"
-                    Grid.Column="2"
-                    Text="Boka plats"
-                    Clicked="OnClickedBook"
-                    VerticalOptions="Center"
-                    HorizontalOptions="End">
-
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="2"
+                                    Text="Boka plats"
+                                    Clicked="OnClickedBook"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="End">
+                                </Button>
+                                <Button
+                                    Grid.Row="2"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="2"
+                                    Text="Inte intresserad"
+                                    Clicked="OnClickedNotInterested"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="End">
                                 </Button>
                             </Grid>
                         </ViewCell>

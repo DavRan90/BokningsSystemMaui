@@ -9,7 +9,6 @@ namespace BokningsSystemMaui.Models
 {
     class Collections
     {
-        private static readonly ObservableCollection<Booking> currentBookings = new ObservableCollection<Booking>();
         public static void AddBooking(Session session)
         {
             Booking newBooking = new Booking
@@ -44,10 +43,6 @@ namespace BokningsSystemMaui.Models
                 }
             }
             Db.CancelBooking(booking.Id);
-        }
-        public static ObservableCollection<Booking> GetBookings()
-        {
-            return currentBookings;
         }
     }
 }
