@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cal="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar"
+             x:Class="BokningsSystemMaui.BookPage"
+             Title="Boka pass">
+    <cal:Calendar
+        Events="{Binding Events}" EventsScrollViewVisible="True" EventIndicatorType="Background" EventIndicatorColor="LightGreen"
+        FirstDayOfWeek="Monday"
+        ShowYearPicker="False"
+        BackgroundColor="LightGray"
+        EventIndicatorSelectedColor="Green"
+        SelectedDayBackgroundColor="Green">
+        <cal:Calendar.EventTemplate>
+            <DataTemplate>
+                <VerticalStackLayout
+                    Padding="20">
+                    
+                    <Label Text="{Binding Name}" TextColor="Black" FontSize="25" FontAttributes="Bold" Padding="0"/>
+                    <Grid
+                        RowDefinitions="20, 20, 20, *"
+                        ColumnDefinitions="55, 55, *"
+                        HorizontalOptions="Fill"
+                        Padding="10"
+                        RowSpacing="10"
+                        ColumnSpacing="10">
+                        <Label Grid.Row="0" Grid.Column="0" Text="Start:" TextColor="Black"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding TimeStart}" TextColor="Black"/>
+                        <Label Grid.Row="1" Grid.Column="0" Text="Slut:" TextColor="Black"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding TimeEnd}" TextColor="Black"/>
+                        <Label Grid.Row="2" Grid.Column="0" Text="Bokade:" TextColor="Black"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding SlotsBooked}" TextColor="Black" x:Name="Slots"/>
+                        
+                    </Grid>
+                    <Button Grid.Row="5" x:Name="Apply" Text="Anmälan" Clicked="OnClickedApply" WidthRequest="210" HorizontalOptions="Start"/>
+                </VerticalStackLayout>
+            </DataTemplate>
+        </cal:Calendar.EventTemplate>
+    </cal:Calendar>
+
+</ContentPage>

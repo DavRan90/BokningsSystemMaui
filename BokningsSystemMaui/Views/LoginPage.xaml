@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BokningsSystemMaui.LoginPage"
+             Title="Inloggning">
+    <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
+        <Grid
+    RowDefinitions="60, *"
+    ColumnDefinitions="150, 150, 150, 150, 150, *"
+    HorizontalOptions="Fill"
+    Padding="10"
+    RowSpacing="10"
+    ColumnSpacing="10"
+    >
+            <Button
+        Grid.Row="0"
+        Grid.Column="0"
+        x:Name="StartPage"
+        Text="Startsida"
+        Clicked="OnStartPageClicked"
+        />
+            <Button
+        Grid.Row="0"
+        Grid.Column="1"
+        x:Name="MyPages"
+        Text="Mina sidor"
+        Clicked="OnMyPagesClicked"
+        />
+            <Button
+        Grid.Row="0"
+        Grid.Column="2"
+        x:Name="Bookings"
+        Text="Bokningar"
+        Clicked="OnBookingsClicked"
+        />
+            <Button
+        Grid.Row="0"
+        Grid.Column="3"
+        x:Name="Book"
+        Text="Boka pass"
+        Clicked="OnBookClicked"
+        />
+            <Button
+        Grid.Row="0"
+        Grid.Column="4"
+        x:Name="Admin"
+        Text="Admin"
+        Clicked="OnAdminClicked"
+        />
+            <Button
+        CornerRadius="5"
+        BackgroundColor="DodgerBlue"
+        Grid.Row="0"
+        Grid.Column="5"
+        HorizontalOptions="End"
+        x:Name="Login"
+        Text="Logga in"
+        Clicked="OnLoginClicked"
+        />
+        </Grid>
+        <Label 
+            Padding="50"
+            x:Name="InfoLabel"
+            Text="Logga in för att se bokningar och mer"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+
+        <Entry
+            x:Name="Username"
+            Placeholder="Användarnamn"
+            WidthRequest="400"
+            />
+        <Entry           
+            x:Name="Password"
+            Placeholder="Password"
+            WidthRequest="400"
+            />
+        <Button
+            Grid.Row="2"
+            x:Name="LoginButton"
+            Text="Logga in"
+            WidthRequest="400"
+            Clicked="OnClickedLoginButton"
+            />
+        <Button
+            Grid.Row="2"
+            x:Name="LogoutButton"
+            Text="Logga ut"
+            WidthRequest="400"
+            Clicked="OnClickedLogoutButton"
+            />
+        <Button
+            Grid.Row="2"
+            x:Name="RegisterButton"
+            Text="Registrera"
+            WidthRequest="400"
+            Clicked="OnClickedRegisterButton"
+            />
+
+
+    </VerticalStackLayout>
+</ContentPage>

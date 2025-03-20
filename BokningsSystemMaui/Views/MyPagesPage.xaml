@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BokningsSystemMaui.Views.MyPagesPage"
+             Title="Mina sidor"
+             MenuItem.Accelerator="Test">
+    <ScrollView>
+
+        <VerticalStackLayout
+            BindingContext="{Binding User}"
+            Padding="30,0"
+            Spacing="25">
+            <Grid
+                RowDefinitions="60, *"
+                ColumnDefinitions="150, 150, 150, 150, 150, *"
+                HorizontalOptions="Fill"
+                Padding="10"
+                RowSpacing="10"
+                ColumnSpacing="10"
+                >
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    x:Name="StartPage"
+                    Text="Startsida"
+                    Clicked="OnStartPageClicked"
+                    />
+                <Button
+                    BackgroundColor="Aquamarine"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    x:Name="MyPages"
+                    Text="Mina sidor"
+                    Clicked="OnMyPagesClicked"
+                    />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    x:Name="Bookings"
+                    Text="Bokningar"
+                    Clicked="OnBookingsClicked"
+                    />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    x:Name="Book"
+                    Text="Boka pass"
+                    Clicked="OnBookClicked"
+                    />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    x:Name="Admin"
+                    Text="Admin"
+                    Clicked="OnAdminClicked"
+                    />
+                <Button
+                    CornerRadius="5"
+                    BackgroundColor="DodgerBlue"
+                    Grid.Row="0"
+                    Grid.Column="5"
+                    HorizontalOptions="End"
+                    x:Name="Login"
+                    Text="Logga in"
+                    Clicked="OnLoginClicked"
+                    />
+            </Grid>
+            <Label 
+                x:Name="Headline"
+                Text="Användaruppgifter"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <Entry
+                Placeholder="Användarnamn"
+            x:Name="Username"
+            Text="{Binding Username}"
+            WidthRequest="400"
+            />
+            <Entry      
+            Placeholder="Namn"
+            x:Name="Name"
+            Text="{Binding Name}"
+            WidthRequest="400"
+            />
+            <Entry
+                Placeholder="Personnummer"
+            x:Name="PersonNummer"
+            Text="{Binding PersonNummer}"
+            WidthRequest="400"
+            />
+            <Entry           
+                Placeholder="Stad"
+            x:Name="City"
+            Text="{Binding City}"
+            WidthRequest="400"
+            />
+            <Entry           
+                Placeholder="Postnummer"
+            x:Name="ZipCode"
+            Text="{Binding ZipCode}"
+            WidthRequest="400"
+            />
+            <Entry           
+                Placeholder="Telefonnummer"
+            x:Name="Telephone"
+            Text="{Binding Telephone}"
+            WidthRequest="400"
+            />
+            <Entry         
+                Placeholder="Epost"
+            x:Name="Email"
+            Text="{Binding Email}"
+            WidthRequest="400"
+            />
+            <Button
+            Grid.Row="2"
+            x:Name="Spara"
+            Text="Spara"
+            WidthRequest="400"
+            Clicked="OnClickedSave"
+            />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
